@@ -1,161 +1,157 @@
-import React, { useEffect, useState } from 'react'
-import phoneServices from './phone'
-
-const Filter = ({ handleFilterChange, nameFilter }) => {
-  return (
-    <div>
-      filter: <input onChange={handleFilterChange} value={nameFilter} />
-    </div>
-  )
-}
+import React, { useState, useEffect } from "react";
+import Blog from "./components/Blog";
+import blogService from "./services/blogs";
+import loginService from "./services/login";
 
 const Notification = ({ message, type }) => {
   if (message === null) {
-    return null
+    return null;
   }
-  return (
-    <div className={type}>
-      {message}
-    </div>
-  )
-}
+  return <div className={type}>{message}</div>;
+};
 
-const Persons = ({ persons, nameFilter, setPersons, handleDeletePerson }) => {
-  // const handleDeletePerson = (id, name) => {
-  //   console.log(`want to delete id=${id}`)
-  //   if (window.confirm(`Delete ${name} ?`) === true)
-  //     phoneServices.remove(id).then(response => {
-  //       if (response.status === 200) {
-  //         console.log('delete success')
-  //         setPersons(persons.filter(person => person.id !== id))
-  //       }
-  //     }).catch(error => {
-  //       setMessageType('success')
-  //       setMessage(`Updated ${updatedPerson.name}`)
-  //       setTimeout(() => setMessage(null), 5000)
-  //     })
-  // }
-  const renderPersons = persons.filter((person) =>
-    person.name.toLowerCase()
-      .includes(nameFilter.toLowerCase()))
-    .map((person) => <div className='person' key={person.name}>{person.name} {person.number} <button onClick={() => handleDeletePerson(person.id, person.name)}>delete</button></div>)
-  return (
-    renderPersons
-  )
-}
-
-const PersonForm = ({ handleAddPerson, handleNewNameChange, newName, handleNewNumberChange, newNumber }) => {
-  return (
-    <form onSubmit={handleAddPerson}>
-      <div>
-        name: <input onChange={handleNewNameChange} value={newName} />
-      </div>
-      <div>
-        number: <input onChange={handleNewNumberChange} value={newNumber} />
-      </div>
-      <div>
-        <button type="submit" >add</button>
-      </div>
-      <div>debug: {newName}</div>
-    </form>
-  )
-}
 const App = () => {
-  const [persons, setPersons] = useState([])
-  const [newName, setNewName] = useState('')
-  const [newNumber, setNewNumber] = useState('')
-  const [nameFilter, setNameFilter] = useState('')
-  const [message, setMessage] = useState(null)
-  const [messageType, setMessageType] = useState('success')
-  const handleNewNameChange = (event) => {
-    event.preventDefault()
-    setNewName(event.target.value)
-  }
-  const handleNewNumberChange = (event) => {
-    setNewNumber(event.target.value)
-  }
-  const handleFilterChange = (event) => {
-    setNameFilter(event.target.value)
-  }
-  const handleAddPerson = (event) => {
-    event.preventDefault();
-    let duplicate = false
-    const person = persons.find(p => p.name === newName)
-    if (person !== undefined) duplicate = true
-    if (!duplicate) {
-      const newPerson = { name: newName, number: newNumber }
-      phoneServices
-        .create(newPerson)
-        .then(savedPerson => {
-          setMessageType('success')
-          setMessage(`Added ${savedPerson.name}`)
-          setTimeout(() => setMessage(null), 5000)
-          setPersons(persons.concat(savedPerson))
-        }).catch(error => {
-          //this is the way to access the error message
-          console.log(error.response.data.error)
-          setMessageType('error')
-          setMessage(error.response.data.error.toString())
-          setTimeout(() => setMessage(null), 5000)
-        })
-    } else {
-      if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`))
-        phoneServices
-          .update(person.id, { ...person, number: newNumber })
-          .then(updatedPerson => {
-            setMessageType('success')
-            setMessage(`Updated ${updatedPerson.name}`)
-            setTimeout(() => setMessage(null), 5000)
-            setPersons(persons.map(p => p.id === updatedPerson.id ? updatedPerson : p))
-          })
-          .catch(error => {
-            console.log(error.response.data.error)
-            setMessageType('error')
-            setMessage(error.response.data.error.toString())
-            setTimeout(() => setMessage(null), 5000)
-          })
-    }
-    setNewName('')
-    setNewNumber('')
-  }
+  const [blogs, setBlogs] = useState([]);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [user, setUser] = useState(null);
+  const [title, setTitle] = useState("");
+  const [url, setUrl] = useState("");
+  const [author, setAuthor] = useState("");
 
-  const handleDeletePerson = (id, name) => {
-    console.log(`want to delete id=${id}`)
-    if (window.confirm(`Delete ${name} ?`) === true)
-      phoneServices.remove(id).then(response => {
-        if (response.status === 204) {
-          console.log('delete success')
-          setMessageType('success')
-          setMessage(`Deleted ${name} from phonebook!`)
-          setPersons(persons.filter(person => person.id !== id))
-        }
-      }).catch(error => {
-        setMessageType('error')
-        setMessage(`Information about ${name} has already been deleted from the server`)
-        setTimeout(() => setMessage(null), 5000)
-        setPersons(persons.filter(person => person.id !== id))
-      })
-  }
-
+  const [message, setMessage] = useState(null);
+  const [messageType, setMessageType] = useState("success");
 
   useEffect(() => {
-    phoneServices.getAll()
-      .then(persons => setPersons(persons))
-      .catch(error => console.log('getAll() error'))
-  }, [])
+    blogService.getAll().then((blogs) => setBlogs(blogs));
+  }, []);
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem("loggedUser");
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON);
+      setUser(user);
+      blogService.setToken(user.token);
+    }
+  }, []);
 
-  return (
+  const createForm = () => (
     <div>
-      <h1>Phonebook</h1>
-      <Notification message={message} type={messageType} />
-      <Filter handleFilterChange={handleFilterChange} nameFilter={nameFilter} />
-
-      <h1>add a new</h1>
-      <PersonForm handleAddPerson={handleAddPerson} handleNewNameChange={handleNewNameChange} newName={newName} handleNewNumberChange={handleNewNumberChange} newNumber={newNumber} />
-      <h1>Numbers</h1>
-      <Persons persons={persons} nameFilter={nameFilter} setPersons={setPersons} handleDeletePerson={handleDeletePerson} />
+      <form onSubmit={handleCreateBlog}>
+        <div>
+          title
+          <input
+            type="text"
+            name="Title"
+            value={title}
+            onChange={({ target }) => setTitle(target.value)}
+          />
+        </div>
+        <div>
+          author
+          <input
+            type="text"
+            name="Author"
+            value={author}
+            onChange={({ target }) => setAuthor(target.value)}
+          />
+        </div>
+        <div>
+          url
+          <input
+            type="text"
+            name="Url"
+            value={url}
+            onChange={({ target }) => setUrl(target.value)}
+          />
+        </div>
+        <button type="submit">create</button>
+      </form>
     </div>
-  )
-}
+  );
+  const loginForm = () => {
+    if (user === null) {
+      return (
+        <form onSubmit={handleLogin}>
+          <div>
+            username
+            <input
+              type="text"
+              value={username}
+              name="Username"
+              onChange={({ target }) => {
+                setUsername(target.value);
+              }}
+            />
+          </div>
+          <div>
+            password
+            <input
+              type="password"
+              value={password}
+              name="Password"
+              onChange={({ target }) => {
+                setPassword(target.value);
+              }}
+            />
+          </div>
+          <div>
+            <button type="submit">login</button>
+          </div>
+        </form>
+      );
+    } else
+      return (
+        <div>
+          <h1>logged in as {user.name}</h1>
+          <button onClick={handleLogout}>log out</button>
+          <h2>blogs</h2>
+          <h3>create a new blog</h3>
+          {createForm()}
+          {blogs.map((blog) => (
+            <Blog key={blog.id} blog={blog} />
+          ))}
+        </div>
+      );
+  };
 
-export default App
+  const handleLogout = async (event) => {
+    event.preventDefault();
+    setUser(null);
+    window.localStorage.removeItem("loggedUser");
+  };
+  const handleCreateBlog = async (event) => {
+    event.preventDefault();
+    const result = await blogService.create({ title, author, url });
+    setBlogs(blogs.concat(result));
+    setMessage(`a new blog ${title} by ${author} has been added`);
+    setMessageType("success");
+    setTimeout(() => setMessage(null), 5000);
+  };
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    try {
+      const user = await loginService.login({
+        username,
+        password,
+      });
+      setUser(user);
+      setUsername("");
+      setPassword("");
+      window.localStorage.setItem("loggedUser", JSON.stringify(user));
+      blogService.setToken(user.token);
+    } catch (exception) {
+      setMessage("Wrong Credentials");
+      setMessageType("error");
+      setTimeout(() => setMessage(null), 5000);
+    }
+  };
+  return (
+    <>
+      <Notification message={message} type={messageType} />
+
+      {loginForm()}
+    </>
+  );
+};
+
+export default App;
