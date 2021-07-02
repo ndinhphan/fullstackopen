@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
-import { anecdotesVote } from "../reducers/anecdoteReducer";
-import { notificationSet } from "../reducers/notificationReducer";
+import { anecdotesVote } from "../../actions/anecdoteActions";
+import { notificationSet } from "../../actions/notificationActions";
+import { Link } from "react-router-dom";
 const AnecdoteList = (props) => {
   const anecdotes = useSelector((state) => state.anecdotes);
   const filter = useSelector((state) => state.filter);
@@ -18,7 +19,7 @@ const AnecdoteList = (props) => {
         .sort((a, b) => b.votes - a.votes)
         .map((anecdote) => (
           <div key={anecdote.id}>
-            <div>{anecdote.content}</div>
+            <Link to={`/anecdotes/${anecdote.id}`}>{anecdote.content}</Link>
             <div>
               has {anecdote.votes}
               <button onClick={() => vote(anecdote)}>vote</button>

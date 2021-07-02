@@ -12,10 +12,16 @@ const create = async (anecdote) => {
   return response;
 };
 
-const vote = async (id) =>{
-  const response = await axios.get(`${baseUrl}/${id}`)
+const vote = async (id) => {
+  const response = await axios.get(`${baseUrl}/${id}`);
   const anecdote = response.data;
-  if(anecdote.hasOwnProperty('votes')) await axios.put(`${baseUrl}/${id}`, {...anecdote, votes: anecdote.votes+1} )
-}
+  if (anecdote.hasOwnProperty("votes")) {
+    const result = await axios.put(`${baseUrl}/${id}`, {
+      ...anecdote,
+      votes: anecdote.votes + 1,
+    });
+    return result.data.id;
+  }
+};
 
 export default { getAll, create, vote };

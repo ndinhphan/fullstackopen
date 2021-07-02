@@ -1,16 +1,10 @@
 
 
-
-export const filterChange = (filter) => (
-  {
-    type: 'CHANGE',
-    filter
-  }
-)
+const FILTER_CHANGE = 'FILTER_CHANGE'
 
 const filterReducer = (state = '', action) => {
   switch (action.type) {
-    case "CHANGE":
+    case FILTER_CHANGE:
       return action.filter;
     default:
       return state;

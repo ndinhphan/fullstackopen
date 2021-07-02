@@ -2,73 +2,73 @@
   "anecdotes": [
     {
       "content": "If it hurts, do it more often",
-      "id": "47145",
-      "votes": 26
+      "author": "Jez Humble",
+      "info": "https://martinfowler.com/bliki/FrequencyReducesDifficulty.html",
+      "votes": 44,
+      "id": "1"
     },
     {
-      "content": "Adding manpower to a late software project makes it later!",
-      "id": "21149",
-      "votes": 8
+      "content": "Premature optimization is the root of all evil",
+      "author": "Donald Knuth",
+      "info": "http://wiki.c2.com/?PrematureOptimization",
+      "votes": 25,
+      "id": "2"
     },
     {
-      "content": "The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.",
-      "id": "69581",
-      "votes": 0
+      "content": "a",
+      "author": "",
+      "info": "",
+      "votes": 16,
+      "id": "HNPJHih"
     },
     {
-      "content": "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
-      "id": "36975",
-      "votes": 0
+      "content": "wlamdkmdsl",
+      "author": "lol",
+      "info": "google",
+      "votes": 7,
+      "id": "2ol2QF4"
     },
     {
-      "content": "Premature optimization is the root of all evil.",
-      "id": "25170",
-      "votes": 0
+      "content": "wlamdkmdsl",
+      "author": "lol",
+      "info": "google",
+      "votes": 8,
+      "id": "W0TVHCr"
     },
     {
-      "content": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
-      "id": "98312",
-      "votes": 1
+      "content": "wlamdkmdsl",
+      "author": "lol",
+      "info": "google",
+      "votes": 8,
+      "id": "l3X1jIv"
     },
     {
-      "content": "this is a new anecdote",
-      "votes": 0,
-      "id": "b7mnB3R"
+      "content": "wlamdkmdsl",
+      "author": "lol",
+      "info": "google",
+      "votes": 8,
+      "id": "c7zpScJ"
     },
     {
-      "content": "adsdadsasaddds",
-      "votes": 0,
-      "id": "hbPa1KT"
+      "content": "wlamdkmdsl",
+      "author": "lol",
+      "info": "google",
+      "votes": 9,
+      "id": "2-SLpZN"
     },
     {
-      "content": "asdsdasdasds",
-      "votes": 0,
-      "id": "ORbsknj"
-    },
-    {
-      "content": "asdasdas",
-      "votes": 0,
-      "id": "fvzDuHE"
-    },
-    {
-      "content": "asdasdssdsdsds",
-      "votes": 0,
-      "id": "kt1BG9v"
+      "content": "wlamdkmdsl",
+      "author": "lol",
+      "info": "google",
+      "votes": 8,
+      "id": "kWgae_v"
     },
     {
       "content": "",
+      "author": "",
+      "info": "",
       "votes": 0,
-      "id": "4FK_iVc"
-    },
-    {
-      "content": "eqeqeqeqeq",
-      "votes": 0,
-      "id": "kJgHqga"
-    },
-    {
-      "content": "qeeeqe",
-      "votes": 0,
-      "id": "wi_axj0"
+      "id": "7CheEY7"
     }
   ]
 }

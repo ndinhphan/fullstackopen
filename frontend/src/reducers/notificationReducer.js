@@ -1,23 +1,14 @@
-export const notificationSet = (notification,time) => {
-  // return async (dispatch) => {
-  //   dispatch({ type: "SET", data: notification });
-  //   await setTimeout(async ()=>{
-  //     dispatch({
-  //       type: "REMOVE",
-  //     })
-  //   }, 1000)
-  // };
-  return {
-    type:"SET"
-  }
-};
 
-const notificationReducer = (state = '', action) => {
+const initialState = {
+  notification: ''
+}
+
+const notificationReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SET":
-      return action.data;
-    case "REMOVE":
-      return '';
+    case "SET_NOTIFICATION":
+      return {notification: action.data};
+    case "REMOVE_NOTIFICATION":
+      return {notification: ''};
     default:
       return state;
   }

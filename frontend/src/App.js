@@ -1,23 +1,24 @@
-import React, { useEffect } from "react";
+import { Switch, Route } from "react-router-dom";
 
-import AnecdoteForm from "./components/AnecdoteForm";
-import AnecdoteList from "./components/AnecdoteList";
-import Notification from "./components/Notification";
-import Filter from "./components/Filter";
-import { useDispatch } from "react-redux";
-import { anecdotesInitialize } from "./reducers/anecdoteReducer";
+import Notification from "./components/Notification/index";
+import Menu from "./components/Menu/index";
+
+import About from "./pages/About/index";
+import Homepage from "./pages/Homepage/index";
+
+
 const App = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(anecdotesInitialize());
-  });
   return (
     <div>
-      <Notification />
-      <Filter />
       <h2>Anecdotes</h2>
-      <AnecdoteList />
-      <AnecdoteForm />
+      <Menu />
+      <Notification />
+      <Switch>
+        <Route path="/about" component={About} />
+        <Route path="/">
+          <Homepage/>
+        </Route>
+      </Switch>
     </div>
   );
 };

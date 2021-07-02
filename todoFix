@@ -1,0 +1,17 @@
+tach page va component tao folder rieng
+
+moi mot component/page viet folder/index.jsx
+
+tach saga, rootsaga chi de import watch, moi watch yield all cac watch nho hon, tach watch thanh cac module
+
+
+
+tao file router.js, viet thanh mang, sau do dung js loop de tra ve component va route
+
+tach action va reducer => folder rieng
+
+tach type cua action thanh bien 
+
+
+
+xem lai cach viet router <component=>
