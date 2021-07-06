@@ -9,13 +9,13 @@ const Anecdote = ({ anecdote }) => {
     dispatch(anecdotesVote(anecdote));
     dispatch(notificationSet("you voted " + anecdote.content, 2));
   };
-  console.log(anecdote)
+  console.log(anecdote);
   return (
     <div>
       <h2>
         {content} by {anecdote.author}
       </h2>
-      has {anecdote.votes} {anecdote.votes >1 ? "votes" : "vote"}{" "}
+      has {anecdote.votes} {anecdote.votes > 1 ? "votes" : "vote"}{" "}
       <button onClick={() => vote(anecdote)}>vote</button>{" "}
       <p>
         for more info see <a href={anecdote.info}>{anecdote.info}</a>

@@ -7,9 +7,9 @@ import filterReducer from "./reducers/filterReducer";
 import { composeWithDevTools } from "redux-devtools-extension";
 import rootSaga from './sagas';
 const reducer = combineReducers({
-  anecdotes: anecdoteReducer,
-  notification: notificationReducer,
-  filter: filterReducer,
+  anecdoteReducer,
+  notificationReducer,
+  filterReducer,
 });
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));

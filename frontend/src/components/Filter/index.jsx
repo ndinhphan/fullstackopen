@@ -1,9 +1,8 @@
 import React from 'react'
 
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {filterChange} from '../../actions/filterActions'
 const Filter = () => {
-  const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
   const handleChange = (event) => {
     // input-field value is in variable event.target.value

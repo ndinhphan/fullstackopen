@@ -4,21 +4,21 @@
       "content": "If it hurts, do it more often",
       "author": "Jez Humble",
       "info": "https://martinfowler.com/bliki/FrequencyReducesDifficulty.html",
-      "votes": 44,
+      "votes": 57,
       "id": "1"
     },
     {
       "content": "Premature optimization is the root of all evil",
       "author": "Donald Knuth",
       "info": "http://wiki.c2.com/?PrematureOptimization",
-      "votes": 25,
+      "votes": 30,
       "id": "2"
     },
     {
       "content": "a",
       "author": "",
       "info": "",
-      "votes": 16,
+      "votes": 18,
       "id": "HNPJHih"
     },
     {
@@ -32,7 +32,7 @@
       "content": "wlamdkmdsl",
       "author": "lol",
       "info": "google",
-      "votes": 8,
+      "votes": 11,
       "id": "W0TVHCr"
     },
     {
@@ -67,8 +67,29 @@
       "content": "",
       "author": "",
       "info": "",
-      "votes": 0,
+      "votes": 1,
       "id": "7CheEY7"
+    },
+    {
+      "content": "wlamdkmdsl",
+      "author": "lol",
+      "info": "google",
+      "votes": 2,
+      "id": "5hTPERK"
+    },
+    {
+      "content": "wlamdkmdsl",
+      "author": "lol",
+      "info": "google",
+      "votes": 2,
+      "id": "2PeAFlX"
+    },
+    {
+      "content": "wlamdkmdsl",
+      "author": "lol",
+      "info": "google",
+      "votes": 2,
+      "id": "ilWk-72"
     }
   ]
 }

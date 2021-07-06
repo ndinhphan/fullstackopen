@@ -1,8 +1,6 @@
-const SET_NOTIFICATION = 'SET_NOTIFICATION'
+const SET_NOTIFICATION = "SET_NOTIFICATION";
 
-export const notificationSet = (notification,time) => {
-  return {
-    type: SET_NOTIFICATION,
-    data: notification
-  }
-};
+export const notificationSet = (notification, time) => ({
+  type: SET_NOTIFICATION,
+  data: notification,
+});
