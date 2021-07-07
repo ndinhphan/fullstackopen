@@ -1,14 +1,22 @@
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { anecdotesVote } from "../../actions/anecdoteActions";
 import { notificationSet } from "../../actions/notificationActions";
-const Anecdote = ({ anecdote }) => {
-  const { content } = anecdote || {};
+import { useSelector } from "react-redux";
+const Anecdote = () => {
+  // const { content } = anecdote || {};
+  const { anecdotes } = useSelector((state) => state.anecdoteReducer);
+
+  const { id } = useParams();
   const dispatch = useDispatch();
   //useDispatch-hook provides access to the dispatch-function of the redux-store defined in index.js
   const vote = (anecdote) => {
     dispatch(anecdotesVote(anecdote));
     dispatch(notificationSet("you voted " + anecdote.content, 2));
   };
+  const anecdote = anecdotes.find((a) => a.id === id);
+  const { content } = anecdote || {};
+
   console.log(anecdote);
   return (
     <div>

@@ -1,7 +1,7 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import Notification from "./components/Notification/index";
-import Menu from "./components/Menu/index";
+import Notification from "./components/Notification/index.jsx";
+import Menu from "./components/Menu/index.jsx";
 
 import About from "./pages/About/index";
 import Homepage from "./pages/Homepage/index";

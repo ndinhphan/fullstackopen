@@ -23,5 +23,5 @@ const vote = async (id) => {
     return result.data.id;
   }
 };
-
-export default { getAll, create, vote };
+const anecdoteServices = { getAll, create, vote };
+export default anecdoteServices;
